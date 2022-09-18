@@ -2,9 +2,9 @@ import { ReactNode } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
 
 import { FontAwesome } from "@expo/vector-icons";
-import avatar from "../assets/images/avatar.jpeg";
 import { RectButton } from "react-native-gesture-handler";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
+import avatar from "../assets/images/avatar.jpeg";
 
 export function Header() {
 	return (
@@ -30,12 +30,14 @@ export function Header() {
 
 const styles = StyleSheet.create({
 	container: {
-		marginTop: getStatusBarHeight() + 30,
 		width: "100%",
+
 		flexDirection: "row",
 		justifyContent: "space-between",
 		alignItems: "center",
-		paddingHorizontal: 24,
+
+		marginTop: getStatusBarHeight() + 30,
+		marginBottom: 30,
 	},
 	profileArea: {
 		flexDirection: "row",
@@ -58,6 +60,7 @@ const styles = StyleSheet.create({
 	avatar: {
 		width: 60,
 		height: 60,
+
 		borderRadius: 50,
 	},
 	settingsArea: {
