@@ -12,16 +12,16 @@ export function Header() {
 			<View style={styles.profileArea}>
 				<Image source={avatar} style={styles.avatar} />
 				<View style={styles.textArea}>
-					<Text style={styles.title}>Hi, Matheus!</Text>
+					<Text style={styles.title}>Hi, Matheus!👋 </Text>
 					<Text style={styles.subtitle}>You have 24 tasks</Text>
 				</View>
 			</View>
 			<View style={styles.settingsArea}>
 				<RectButton style={styles.calendarButton}>
-					<FontAwesome name="calendar" size={25} color="#FFF" />
+					<FontAwesome name="calendar" size={25} />
 				</RectButton>
 				<RectButton>
-					<FontAwesome name="bell-o" size={25} color="#FFF" />
+					<FontAwesome name="bell-o" size={25} />
 				</RectButton>
 			</View>
 		</View>
@@ -31,13 +31,13 @@ export function Header() {
 const styles = StyleSheet.create({
 	container: {
 		width: "100%",
-
+		paddingHorizontal: 24,
 		flexDirection: "row",
 		justifyContent: "space-between",
-		alignItems: "center",
+		alignItems: "flex-start",
 
-		marginTop: getStatusBarHeight() + 30,
-		marginBottom: 30,
+		marginTop: getStatusBarHeight(),
+		marginBottom: 20,
 	},
 	profileArea: {
 		flexDirection: "row",
@@ -51,9 +51,9 @@ const styles = StyleSheet.create({
 	title: {
 		fontWeight: "bold",
 		fontSize: 28,
-		color: "#fff",
 	},
 	subtitle: {
+		marginTop: 6,
 		fontSize: 14,
 		color: "#c4c4c4",
 	},
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
 	},
 	settingsArea: {
 		flexDirection: "row",
-		alignItems: "center",
+		justifyContent: "flex-start",
 	},
 	calendarButton: {
 		marginRight: 16,

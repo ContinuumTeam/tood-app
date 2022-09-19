@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { View, Text, StyleSheet, Image } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 
-import { FontAwesome } from "@expo/vector-icons";
 import avatar from "../assets/images/avatar.jpeg";
 
 interface TaskCardProps {
@@ -10,20 +10,30 @@ interface TaskCardProps {
 
 export function TaskCard() {
 	return (
-		<View style={styles.container}>
-			<View>
-				<View>
-					{/* <Text style={styles.category}>work</Text> */}
-					{/* <Text style={styles.taskName}>work</Text> */}
+		<View style={styles.cardTask}>
+			<View style={styles.cardTaskContent}>
+				<View style={styles.cardTaskContentHeader}>
+					<Text style={styles.cardTaskHeaderCategory}>Work</Text>
+					<Text style={styles.cardTaskHeaderTitle}>Meeting with client</Text>
 				</View>
-				<View style={styles.priority}>!!</View>
+				<View style={styles.cardTaskPriority}>
+					<Text style={styles.cardTaskPriorityTitle}>!!</Text>
+				</View>
 			</View>
-			<View>
+			<View style={styles.cardTaskSchedule}>
 				<View>
-					<FontAwesome name="address-book" size={20} />
-					{/* <Text>17 August 2022</Text> */}
-					<FontAwesome name="address-book" size={20} />
-					{/* <Text>19:00 (Remaind at 18:00)</Text> */}
+					<View style={styles.cardTaskScheduleDateTime}>
+						<MaterialIcons name="calendar-today" size={16} />
+						<Text style={styles.cardTaskScheduleDescription}>
+							17 August 2022
+						</Text>
+					</View>
+					<View style={styles.cardTaskScheduleDateTime}>
+						<MaterialIcons name="alarm" size={16} />
+						<Text style={styles.cardTaskScheduleDescription}>
+							19:00 Remaind at 18:00
+						</Text>
+					</View>
 				</View>
 				<Image source={avatar} style={styles.avatar} />
 			</View>
@@ -32,28 +42,67 @@ export function TaskCard() {
 }
 
 const styles = StyleSheet.create({
-	container: {
-		width: 350,
-		height: 120,
+	cardTask: {
+		marginVertical: 8,
+		borderLeftWidth: 4,
+		borderRadius: 4,
+		borderLeftColor: "#000",
+		padding: 12,
+
+		shadowColor: "#171717",
+		shadowOffset: { width: 1, height: 2 },
+		shadowOpacity: 0.05,
+		shadowRadius: 6,
+	},
+	cardTaskContent: {
+		flexDirection: "row",
+		alignItems: "flex-start",
+	},
+	cardTaskContentHeader: {
+		flex: 1,
+		justifyContent: "space-between",
+		marginBottom: 8,
+	},
+	cardTaskHeaderCategory: {
+		fontSize: 16,
+		fontWeight: "bold",
+		color: "#c4c4c4",
+	},
+	cardTaskHeaderTitle: {
+		fontSize: 22,
+		fontWeight: "bold",
+	},
+	cardTaskPriority: {
+		height: 25,
+		width: 25,
 		justifyContent: "center",
 		alignItems: "center",
-		backgroundColor: "#312e38",
-		marginBottom: 20,
-		borderRadius: 6,
-		borderLeftWidth: 4,
-		borderLeftColor: "#FFFFE0",
+		backgroundColor: "red",
+		borderRadius: 50,
 	},
-	title: {
+	cardTaskPriorityTitle: {
+		fontSize: 18,
 		fontWeight: "bold",
-		fontSize: 22,
-		color: "#fff",
+		color: "#FFF",
 	},
-	priority: {},
-	category: {},
-	taskName: {},
+	cardTaskSchedule: {
+		marginVertical: 4,
+		justifyContent: "space-between",
+		alignItems: "flex-end",
+		flexDirection: "row",
+	},
+	cardTaskScheduleDateTime: {
+		flexDirection: "row",
+		marginTop: 4,
+	},
+	cardTaskScheduleDescription: {
+		marginLeft: 8,
+		fontSize: 16,
+		fontWeight: "500",
+	},
 	avatar: {
-		width: 60,
-		height: 60,
+		width: 30,
+		height: 30,
 
 		borderRadius: 50,
 	},

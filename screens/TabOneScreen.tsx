@@ -1,12 +1,12 @@
-import { StyleSheet, FlatList } from "react-native";
+import { StyleSheet, FlatList, Image } from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 
 import { MaterialIcons } from "@expo/vector-icons";
 import { Header, TaskCard } from "../components";
 
-import EditScreenInfo from "../components/EditScreenInfo";
 import { Text, View } from "../components/Themed";
 import { RootTabScreenProps } from "../types";
+import avatar from "../assets/images/avatar.jpeg";
 
 export default function TabOneScreen({
 	navigation,
@@ -75,7 +75,7 @@ export default function TabOneScreen({
 					<MaterialIcons
 						name="check-circle-outline"
 						size={28}
-						color="#FFFFE0"
+						color="#F7F08E"
 					/>
 					<Text
 						style={[styles.infoTaskCardTitle, styles.completedCountTaskTitle]}
@@ -86,12 +86,12 @@ export default function TabOneScreen({
 				</View>
 			</View>
 
-			<View>
+			<View style={styles.tagArea}>
 				<FlatList
 					data={categories}
 					renderItem={(item: any) => (
 						<RectButton style={styles.categoriesButton}>
-							<Text style={styles.countCardInfo}>teste</Text>
+							<Text style={styles.filterTag}>teste</Text>
 						</RectButton>
 					)}
 					horizontal
@@ -100,28 +100,28 @@ export default function TabOneScreen({
 				/>
 			</View>
 
-			<View>
+			<View style={styles.taskArea}>
 				<FlatList
 					data={categories}
 					renderItem={(item: any) => <TaskCard />}
-					showsHorizontalScrollIndicator={false}
-					contentContainerStyle={styles.taskArea}
+					showsVerticalScrollIndicator={false}
+					contentContainerStyle={styles.taskCardArea}
 				/>
 			</View>
 
-			<RectButton
-				style={styles.buttonRect}
-				onPress={() => navigation.navigate("Modal")}
-			>
-				<MaterialIcons name="add" size={28} color="#000" />
-			</RectButton>
+			<View style={styles.buttonCreateTask}>
+				<RectButton onPress={() => navigation.navigate("Modal")}>
+					<MaterialIcons name="add" size={28} color="#FFF" />
+				</RectButton>
+			</View>
 		</View>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-		paddingHorizontal: 24,
+		flex: 1,
+		paddingTop: 50,
 	},
 	title: {
 		fontSize: 20,
@@ -132,13 +132,13 @@ const styles = StyleSheet.create({
 		height: 1,
 		width: "80%",
 	},
-	buttonRect: {
+	buttonCreateTask: {
 		width: 50,
 		height: 50,
 		alignItems: "center",
 		justifyContent: "center",
-		backgroundColor: "#fff",
-		borderRadius: 8,
+		backgroundColor: "#71c7ec",
+		borderRadius: 50,
 		position: "absolute",
 		bottom: 35,
 		right: 35,
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
 		marginVertical: 12,
 	},
 	infoTaskCard: {
-		width: 100,
+		width: 120,
 		height: 120,
 		justifyContent: "center",
 		alignItems: "center",
@@ -180,29 +180,37 @@ const styles = StyleSheet.create({
 		color: "#ADD8E6",
 	},
 	completedCountTask: {
-		backgroundColor: "rgba(255,255,224, .2)",
+		backgroundColor: "rgba(247,240,142,.2)",
 	},
 	completedCountTaskTitle: {
-		color: "#FFFFE0",
+		color: "#F7F08E",
+	},
+	tagArea: {
+		justifyContent: "center",
+	},
+	filterTag: {
+		fontSize: 16,
 	},
 	categoriesArea: {
-		width: "100%",
-		height: 40,
 		marginVertical: 12,
+		paddingHorizontal: 12,
 	},
 	categoriesButton: {
 		width: 80,
+		height: 40,
 		justifyContent: "center",
 		alignItems: "center",
 		backgroundColor: "rgba(173,216,230, .2)",
-		marginLeft: 8,
+		marginRight: 8,
 		borderRadius: 10,
 		padding: 8,
 	},
 	taskArea: {
-		width: "100%",
 		justifyContent: "center",
-		alignItems: "center",
-		marginVertical: 20,
+		flex: 1,
+	},
+	taskCardArea: {
+		marginHorizontal: 14,
+		justifyContent: "center",
 	},
 });
