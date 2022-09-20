@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { StyleSheet, Image } from "react-native";
+import { View, Text } from "./Themed";
 
 import { FontAwesome } from "@expo/vector-icons";
 import { RectButton } from "react-native-gesture-handler";

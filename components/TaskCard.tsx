@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
+import { StyleSheet, Image } from "react-native";
+import { View, Text } from "./Themed";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import avatar from "../assets/images/avatar.jpeg";
@@ -10,7 +11,7 @@ interface TaskCardProps {
 
 export function TaskCard() {
 	return (
-		<View style={styles.cardTask}>
+		<View style={styles.cardTask} lightColor="#FFF">
 			<View style={styles.cardTaskContent}>
 				<View style={styles.cardTaskContentHeader}>
 					<Text style={styles.cardTaskHeaderCategory}>Work</Text>
