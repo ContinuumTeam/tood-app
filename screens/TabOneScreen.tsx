@@ -132,8 +132,8 @@ const styles = StyleSheet.create({
 		width: "80%",
 	},
 	buttonCreateTask: {
-		width: 50,
-		height: 50,
+		width: 70,
+		height: 70,
 		alignItems: "center",
 		justifyContent: "center",
 		backgroundColor: "#71c7ec",

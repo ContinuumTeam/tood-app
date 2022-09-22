@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, Animated } from "react-native";
 import { View, Text } from "./Themed";
-import { MaterialIcons } from "@expo/vector-icons";
-
+import { Feather, MaterialIcons } from "@expo/vector-icons";
 import avatar from "../assets/images/avatar.jpeg";
+import { Swipeable } from "react-native-gesture-handler";
 
 interface TaskCardProps {
 	children: ReactNode;
@@ -11,34 +11,61 @@ interface TaskCardProps {
 
 export function TaskCard() {
 	return (
-		<View style={styles.cardTask} lightColor="#FFF">
-			<View style={styles.cardTaskContent}>
-				<View style={styles.cardTaskContentHeader}>
-					<Text style={styles.cardTaskHeaderCategory}>Work</Text>
-					<Text style={styles.cardTaskHeaderTitle}>Meeting with client</Text>
+		<Swipeable
+			renderLeftActions={(progress, dragX) => {
+				const scale = dragX.interpolate({
+					inputRange: [0, 100],
+					outputRange: [0, 1],
+					extrapolate: "clamp",
+				});
+				return (
+					<Animated.View style={[styles.completedTask]}>
+						<Animated.View style={[styles.content]}>
+							<Animated.View
+								style={[styles.contentTextArea, { transform: [{ scale }] }]}
+							>
+								<Feather
+									name="check-circle"
+									color="#FFF"
+									size={32}
+									style={styles.contentIcon}
+								/>
+								<Text style={styles.contentText}>Completed</Text>
+							</Animated.View>
+						</Animated.View>
+					</Animated.View>
+				);
+			}}
+		>
+			<View style={styles.cardTask} lightColor="#FFF">
+				<View style={styles.cardTaskContent}>
+					<View style={styles.cardTaskContentHeader}>
+						<Text style={styles.cardTaskHeaderCategory}>Work</Text>
+						<Text style={styles.cardTaskHeaderTitle}>Meeting with client</Text>
+					</View>
+					<View style={styles.cardTaskPriority}>
+						<Text style={styles.cardTaskPriorityTitle}>!!</Text>
+					</View>
 				</View>
-				<View style={styles.cardTaskPriority}>
-					<Text style={styles.cardTaskPriorityTitle}>!!</Text>
+				<View style={styles.cardTaskSchedule}>
+					<View>
+						<View style={styles.cardTaskScheduleDateTime}>
+							<MaterialIcons name="calendar-today" size={16} />
+							<Text style={styles.cardTaskScheduleDescription}>
+								17 August 2022
+							</Text>
+						</View>
+						<View style={styles.cardTaskScheduleDateTime}>
+							<MaterialIcons name="alarm" size={16} />
+							<Text style={styles.cardTaskScheduleDescription}>
+								19:00 Remaind at 18:00
+							</Text>
+						</View>
+					</View>
+					<Image source={avatar} style={styles.avatar} />
 				</View>
 			</View>
-			<View style={styles.cardTaskSchedule}>
-				<View>
-					<View style={styles.cardTaskScheduleDateTime}>
-						<MaterialIcons name="calendar-today" size={16} />
-						<Text style={styles.cardTaskScheduleDescription}>
-							17 August 2022
-						</Text>
-					</View>
-					<View style={styles.cardTaskScheduleDateTime}>
-						<MaterialIcons name="alarm" size={16} />
-						<Text style={styles.cardTaskScheduleDescription}>
-							19:00 Remaind at 18:00
-						</Text>
-					</View>
-				</View>
-				<Image source={avatar} style={styles.avatar} />
-			</View>
-		</View>
+		</Swipeable>
 	);
 }
 
@@ -106,5 +133,31 @@ const styles = StyleSheet.create({
 		height: 30,
 
 		borderRadius: 50,
+	},
+	completedTask: {
+		width: "100%",
+		paddingVertical: 12,
+	},
+	content: {
+		backgroundColor: "#388e3c",
+		justifyContent: "center",
+		flex: 1,
+		padding: 8,
+		borderRadius: 8,
+		paddingHorizontal: 8,
+	},
+	contentTextArea: {
+		flexDirection: "row",
+		alignItems: "center",
+	},
+	contentIcon: {
+		marginLeft: 8,
+	},
+	contentText: {
+		width: "100%",
+		color: "#FFF",
+		fontSize: 22,
+		fontWeight: "bold",
+		marginLeft: 12,
 	},
 });
