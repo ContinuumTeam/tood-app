@@ -3,7 +3,7 @@ import { StyleSheet, Image, Animated } from "react-native";
 import { View, Text } from "./Themed";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import avatar from "../assets/images/avatar.jpeg";
-import { Swipeable } from "react-native-gesture-handler";
+import { RectButton, Swipeable } from "react-native-gesture-handler";
 
 interface TaskCardProps {
 	children: ReactNode;
@@ -12,6 +12,8 @@ interface TaskCardProps {
 export function TaskCard() {
 	return (
 		<Swipeable
+			friction={1.7}
+			overshootRight={false}
 			renderLeftActions={(progress, dragX) => {
 				const scale = dragX.interpolate({
 					inputRange: [0, 100],
@@ -36,6 +38,13 @@ export function TaskCard() {
 					</Animated.View>
 				);
 			}}
+			renderRightActions={() => (
+				<View style={styles.taskDeleteArea}>
+					<RectButton style={styles.taskDelete}>
+						<Feather name="trash" size={32} color="#FFF" />
+					</RectButton>
+				</View>
+			)}
 		>
 			<View style={styles.cardTask} lightColor="#FFF">
 				<View style={styles.cardTaskContent}>
@@ -156,8 +165,17 @@ const styles = StyleSheet.create({
 	contentText: {
 		width: "100%",
 		color: "#FFF",
-		fontSize: 22,
+		fontSize: 18,
 		fontWeight: "bold",
 		marginLeft: 12,
+	},
+	taskDeleteArea: { paddingVertical: 12 },
+	taskDelete: {
+		height: "100%",
+		width: 100,
+		justifyContent: "center",
+		alignItems: "center",
+		borderRadius: 8,
+		backgroundColor: "#dd2c00",
 	},
 });
