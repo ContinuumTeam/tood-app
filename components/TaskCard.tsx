@@ -1,15 +1,18 @@
 import { ReactNode } from "react";
-import { StyleSheet, Image, Animated } from "react-native";
+import { StyleSheet, Image, Animated, useColorScheme } from "react-native";
 import { View, Text } from "./Themed";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import avatar from "../assets/images/avatar.jpeg";
 import { RectButton, Swipeable } from "react-native-gesture-handler";
+import Colors from "../constants/Colors";
 
 interface TaskCardProps {
 	children: ReactNode;
 }
 
 export function TaskCard() {
+	const colorScheme = useColorScheme();
+
 	return (
 		<Swipeable
 			friction={1.7}
@@ -59,13 +62,21 @@ export function TaskCard() {
 				<View style={styles.cardTaskSchedule}>
 					<View>
 						<View style={styles.cardTaskScheduleDateTime}>
-							<MaterialIcons name="calendar-today" size={16} />
+							<MaterialIcons
+								name="calendar-today"
+								size={16}
+								color={Colors[colorScheme].text}
+							/>
 							<Text style={styles.cardTaskScheduleDescription}>
 								17 August 2022
 							</Text>
 						</View>
 						<View style={styles.cardTaskScheduleDateTime}>
-							<MaterialIcons name="alarm" size={16} />
+							<MaterialIcons
+								name="alarm"
+								size={16}
+								color={Colors[colorScheme].text}
+							/>
 							<Text style={styles.cardTaskScheduleDescription}>
 								19:00 Remaind at 18:00
 							</Text>

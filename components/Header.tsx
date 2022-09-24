@@ -5,8 +5,11 @@ import { FontAwesome } from "@expo/vector-icons";
 import { RectButton } from "react-native-gesture-handler";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
 import avatar from "../assets/images/avatar.jpeg";
+import useColorScheme from "../hooks/useColorScheme";
+import Colors from "../constants/Colors";
 
 export function Header() {
+	const colorScheme = useColorScheme();
 	return (
 		<View style={styles.container}>
 			<View style={styles.profileArea}>
@@ -18,10 +21,18 @@ export function Header() {
 			</View>
 			<View style={styles.settingsArea}>
 				<RectButton style={styles.calendarButton}>
-					<FontAwesome name="calendar" size={25} />
+					<FontAwesome
+						name="calendar"
+						size={25}
+						color={Colors[colorScheme].text}
+					/>
 				</RectButton>
 				<RectButton>
-					<FontAwesome name="bell-o" size={25} />
+					<FontAwesome
+						name="bell-o"
+						size={25}
+						color={Colors[colorScheme].text}
+					/>
 				</RectButton>
 			</View>
 		</View>
@@ -34,7 +45,7 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 24,
 		flexDirection: "row",
 		justifyContent: "space-between",
-		alignItems: "flex-start",
+		alignItems: "center",
 
 		marginTop: getStatusBarHeight(),
 		marginBottom: 20,

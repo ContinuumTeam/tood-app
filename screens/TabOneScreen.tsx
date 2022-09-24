@@ -108,8 +108,11 @@ export default function TabOneScreen({
 				/>
 			</View>
 
-			<View style={styles.buttonCreateTask}>
-				<RectButton onPress={() => navigation.navigate("Modal")}>
+			<View style={styles.createTask}>
+				<RectButton
+					style={styles.buttonCreateTask}
+					onPress={() => navigation.navigate("Modal")}
+				>
 					<MaterialIcons name="add" size={28} color="#FFF" />
 				</RectButton>
 			</View>
@@ -131,7 +134,7 @@ const styles = StyleSheet.create({
 		height: 1,
 		width: "80%",
 	},
-	buttonCreateTask: {
+	createTask: {
 		width: 70,
 		height: 70,
 		alignItems: "center",
@@ -141,6 +144,12 @@ const styles = StyleSheet.create({
 		position: "absolute",
 		bottom: 35,
 		right: 35,
+	},
+	buttonCreateTask: {
+		width: "100%",
+		height: "100%",
+		justifyContent: "center",
+		alignItems: "center",
 	},
 	buttonText: {
 		color: "#000",
