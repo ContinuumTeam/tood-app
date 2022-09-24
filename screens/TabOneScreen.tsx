@@ -107,15 +107,6 @@ export default function TabOneScreen({
 					contentContainerStyle={styles.taskCardArea}
 				/>
 			</View>
-
-			<View style={styles.createTask}>
-				<RectButton
-					style={styles.buttonCreateTask}
-					onPress={() => navigation.navigate("Modal")}
-				>
-					<MaterialIcons name="add" size={28} color="#FFF" />
-				</RectButton>
-			</View>
 		</View>
 	);
 }
@@ -133,23 +124,6 @@ const styles = StyleSheet.create({
 		marginVertical: 30,
 		height: 1,
 		width: "80%",
-	},
-	createTask: {
-		width: 70,
-		height: 70,
-		alignItems: "center",
-		justifyContent: "center",
-		backgroundColor: "#71c7ec",
-		borderRadius: 50,
-		position: "absolute",
-		bottom: 35,
-		right: 35,
-	},
-	buttonCreateTask: {
-		width: "100%",
-		height: "100%",
-		justifyContent: "center",
-		alignItems: "center",
 	},
 	buttonText: {
 		color: "#000",

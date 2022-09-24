@@ -13,6 +13,7 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import * as React from "react";
 import { ColorSchemeName, Pressable } from "react-native";
+import { View } from "../components/Themed";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
@@ -86,6 +87,21 @@ function BottomTabNavigator() {
 			screenOptions={{
 				tabBarActiveTintColor: Colors[colorScheme].tint,
 				headerShown: false,
+				tabBarShowLabel: false,
+				tabBarStyle: {
+					position: "absolute",
+					bottom: 30,
+					marginHorizontal: 20,
+					height: 70,
+					borderRadius: 10,
+					shadowColor: "#000",
+					shadowOffset: {
+						width: 10,
+						height: 10,
+					},
+					shadowOpacity: 0.06,
+					paddingHorizontal: 20,
+				},
 			}}
 		>
 			<BottomTab.Screen
@@ -94,7 +110,14 @@ function BottomTabNavigator() {
 				options={({ navigation }: RootTabScreenProps<"TabOne">) => ({
 					title: "Home",
 					tabBarIcon: ({ color }) => (
-						<MaterialIcons name="library-add-check" color={color} size={30} />
+						<View
+							style={{
+								position: "absolute",
+								top: "50%",
+							}}
+						>
+							<MaterialIcons name="library-add-check" color={color} size={30} />
+						</View>
 					),
 					// headerRight: () => (
 					// 	<Pressable
@@ -119,7 +142,42 @@ function BottomTabNavigator() {
 				options={{
 					title: "Assigned",
 					tabBarIcon: ({ color }) => (
-						<MaterialIcons name="people-alt" color={color} size={30} />
+						<View
+							style={{
+								position: "absolute",
+								top: "50%",
+							}}
+						>
+							<MaterialIcons name="people-alt" color={color} size={30} />
+						</View>
+					),
+				}}
+			/>
+			<BottomTab.Screen
+				name="TabCreateTask"
+				component={ModalScreen}
+				listeners={({ navigation }) => ({
+					tabPress: (event) => {
+						event.preventDefault();
+						navigation.navigate("Modal");
+					},
+				})}
+				options={{
+					title: "Settings",
+					tabBarIcon: ({ color }) => (
+						<View
+							style={{
+								width: 60,
+								height: 60,
+								justifyContent: "center",
+								alignItems: "center",
+								backgroundColor: "#71c7ec",
+								borderRadius: 50,
+								marginBottom: 20,
+							}}
+						>
+							<MaterialIcons name="add" color="#FFF" size={30} />
+						</View>
 					),
 				}}
 			/>
@@ -129,11 +187,18 @@ function BottomTabNavigator() {
 				options={{
 					title: "analytics",
 					tabBarIcon: ({ color }) => (
-						<MaterialIcons
-							name="insert-chart-outlined"
-							color={color}
-							size={30}
-						/>
+						<View
+							style={{
+								position: "absolute",
+								top: "50%",
+							}}
+						>
+							<MaterialIcons
+								name="insert-chart-outlined"
+								color={color}
+								size={30}
+							/>
+						</View>
 					),
 				}}
 			/>
@@ -143,7 +208,14 @@ function BottomTabNavigator() {
 				options={{
 					title: "Settings",
 					tabBarIcon: ({ color }) => (
-						<MaterialIcons name="settings" color={color} size={30} />
+						<View
+							style={{
+								position: "absolute",
+								top: "50%",
+							}}
+						>
+							<MaterialIcons name="settings" color={color} size={30} />
+						</View>
 					),
 				}}
 			/>
