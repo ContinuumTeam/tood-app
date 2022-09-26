@@ -90,9 +90,9 @@ function BottomTabNavigator() {
 				tabBarShowLabel: false,
 				tabBarStyle: {
 					position: "absolute",
+					height: 60,
 					bottom: 30,
 					marginHorizontal: 20,
-					height: 70,
 					borderRadius: 10,
 					shadowColor: "#000",
 					shadowOffset: {
@@ -112,8 +112,9 @@ function BottomTabNavigator() {
 					tabBarIcon: ({ color }) => (
 						<View
 							style={{
-								position: "absolute",
-								top: "50%",
+								backgroundColor: "yellow",
+								justifyContent: "center",
+								alignItems: "center",
 							}}
 						>
 							<MaterialIcons name="library-add-check" color={color} size={30} />
@@ -142,12 +143,7 @@ function BottomTabNavigator() {
 				options={{
 					title: "Assigned",
 					tabBarIcon: ({ color }) => (
-						<View
-							style={{
-								position: "absolute",
-								top: "50%",
-							}}
-						>
+						<View style={{}}>
 							<MaterialIcons name="people-alt" color={color} size={30} />
 						</View>
 					),
@@ -163,7 +159,7 @@ function BottomTabNavigator() {
 					},
 				})}
 				options={{
-					title: "Settings",
+					title: "Create Task",
 					tabBarIcon: ({ color }) => (
 						<View
 							style={{
@@ -171,7 +167,7 @@ function BottomTabNavigator() {
 								height: 60,
 								justifyContent: "center",
 								alignItems: "center",
-								backgroundColor: "#71c7ec",
+								backgroundColor: "#03DAC6",
 								borderRadius: 50,
 								marginBottom: 20,
 							}}
@@ -187,12 +183,7 @@ function BottomTabNavigator() {
 				options={{
 					title: "analytics",
 					tabBarIcon: ({ color }) => (
-						<View
-							style={{
-								position: "absolute",
-								top: "50%",
-							}}
-						>
+						<View style={{}}>
 							<MaterialIcons
 								name="insert-chart-outlined"
 								color={color}
@@ -208,12 +199,7 @@ function BottomTabNavigator() {
 				options={{
 					title: "Settings",
 					tabBarIcon: ({ color }) => (
-						<View
-							style={{
-								position: "absolute",
-								top: "50%",
-							}}
-						>
+						<View style={{}}>
 							<MaterialIcons name="settings" color={color} size={30} />
 						</View>
 					),

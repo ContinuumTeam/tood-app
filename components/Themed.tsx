@@ -41,9 +41,22 @@ export function Text(props: TextProps) {
 export function View(props: ViewProps) {
 	const { style, lightColor, darkColor, ...otherProps } = props;
 	const backgroundColor = useThemeColor(
-		{ light: lightColor, dark: darkColor },
+		{
+			light: lightColor,
+			dark: darkColor,
+		},
 		"background"
 	);
-
+	return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
+}
+export function Card(props: ViewProps) {
+	const { style, lightColor, darkColor, ...otherProps } = props;
+	const backgroundColor = useThemeColor(
+		{
+			light: lightColor,
+			dark: "#1F1B24",
+		},
+		"background"
+	);
 	return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
 }

@@ -1,4 +1,10 @@
-import { StyleSheet, FlatList, Image } from "react-native";
+import {
+	StyleSheet,
+	FlatList,
+	Image,
+	SafeAreaView,
+	SectionList,
+} from "react-native";
 import { RectButton } from "react-native-gesture-handler";
 
 import { MaterialIcons } from "@expo/vector-icons";
@@ -49,64 +55,88 @@ export default function TabOneScreen({
 		},
 	];
 
+	const SECTIONS = [
+		{
+			title: "NEW WORKOUT",
+			principal: true,
+			data: categories,
+			color: "#000",
+		},
+	];
+
 	return (
 		<View style={styles.container}>
 			<Header />
 
-			<View style={styles.infoTaskArea}>
-				<View style={[styles.infoTaskCard, styles.countAllTask]}>
-					<MaterialIcons name="layers" size={28} color="#FFCBDB" />
-					<Text style={[styles.infoTaskCardTitle, styles.countAllTaskTitle]}>
-						Task
-					</Text>
-					<Text style={styles.countCardInfo}>80</Text>
-				</View>
+			<SectionList
+				sections={SECTIONS}
+				contentContainerStyle={styles.contentHome}
+				stickySectionHeadersEnabled={false}
+				showsVerticalScrollIndicator={false}
+				renderSectionHeader={({ section }) => (
+					<>
+						<View style={styles.infoTaskArea}>
+							<View style={[styles.infoTaskCard, styles.countAllTask]}>
+								<MaterialIcons name="layers" size={28} color="#FFCBDB" />
+								<Text
+									style={[styles.infoTaskCardTitle, styles.countAllTaskTitle]}
+								>
+									Task
+								</Text>
+								<Text style={styles.countCardInfo}>80</Text>
+							</View>
 
-				<View style={[styles.infoTaskCard, styles.assignCountTask]}>
-					<MaterialIcons name="assignment" size={28} color="#ADD8E6" />
-					<Text style={[styles.infoTaskCardTitle, styles.assignCountTaskTitle]}>
-						Assigned
-					</Text>
-					<Text style={styles.countCardInfo}>56</Text>
-				</View>
+							<View style={[styles.infoTaskCard, styles.assignCountTask]}>
+								<MaterialIcons name="assignment" size={28} color="#ADD8E6" />
+								<Text
+									style={[
+										styles.infoTaskCardTitle,
+										styles.assignCountTaskTitle,
+									]}
+								>
+									Assigned
+								</Text>
+								<Text style={styles.countCardInfo}>56</Text>
+							</View>
 
-				<View style={[styles.infoTaskCard, styles.completedCountTask]}>
-					<MaterialIcons
-						name="check-circle-outline"
-						size={28}
-						color="#F7F08E"
-					/>
-					<Text
-						style={[styles.infoTaskCardTitle, styles.completedCountTaskTitle]}
-					>
-						Completed
-					</Text>
-					<Text style={styles.countCardInfo}>104</Text>
-				</View>
-			</View>
-
-			<View style={styles.tagArea}>
-				<FlatList
-					data={categories}
-					renderItem={(item: any) => (
-						<RectButton style={styles.categoriesButton}>
-							<Text style={styles.filterTag}>teste</Text>
-						</RectButton>
-					)}
-					horizontal
-					showsHorizontalScrollIndicator={false}
-					contentContainerStyle={styles.categoriesArea}
-				/>
-			</View>
-
-			<View style={styles.taskArea}>
-				<FlatList
-					data={categories}
-					renderItem={(item: any) => <TaskCard />}
-					showsVerticalScrollIndicator={false}
-					contentContainerStyle={styles.taskCardArea}
-				/>
-			</View>
+							<View style={[styles.infoTaskCard, styles.completedCountTask]}>
+								<MaterialIcons
+									name="check-circle-outline"
+									size={28}
+									color="#F7F08E"
+								/>
+								<Text
+									style={[
+										styles.infoTaskCardTitle,
+										styles.completedCountTaskTitle,
+									]}
+								>
+									Completed
+								</Text>
+								<Text style={styles.countCardInfo}>104</Text>
+							</View>
+						</View>
+						<View style={styles.tagArea}>
+							<FlatList
+								data={section.data}
+								renderItem={(item: any) => (
+									<RectButton style={styles.categoriesButton}>
+										<Text style={styles.filterTag}>teste</Text>
+									</RectButton>
+								)}
+								horizontal
+								showsHorizontalScrollIndicator={false}
+								contentContainerStyle={styles.categoriesArea}
+							/>
+						</View>
+					</>
+				)}
+				renderItem={({ section }) => (
+					<View style={styles.taskArea}>
+						<TaskCard />
+					</View>
+				)}
+			/>
 		</View>
 	);
 }
@@ -114,16 +144,14 @@ export default function TabOneScreen({
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		paddingTop: 50,
+		paddingTop: 20,
+	},
+	contentHome: {
+		paddingBottom: 120,
 	},
 	title: {
 		fontSize: 20,
 		fontWeight: "bold",
-	},
-	separator: {
-		marginVertical: 30,
-		height: 1,
-		width: "80%",
 	},
 	buttonText: {
 		color: "#000",
@@ -188,8 +216,9 @@ const styles = StyleSheet.create({
 		padding: 8,
 	},
 	taskArea: {
-		justifyContent: "center",
 		flex: 1,
+		justifyContent: "center",
+		paddingHorizontal: 12,
 	},
 	taskCardArea: {
 		marginHorizontal: 14,

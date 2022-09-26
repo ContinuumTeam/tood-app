@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 
 		marginTop: getStatusBarHeight(),
-		marginBottom: 20,
+		marginBottom: 10,
 	},
 	profileArea: {
 		flexDirection: "row",

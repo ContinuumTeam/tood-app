@@ -1,6 +1,12 @@
 import { ReactNode } from "react";
-import { StyleSheet, Image, Animated, useColorScheme } from "react-native";
-import { View, Text } from "./Themed";
+import {
+	StyleSheet,
+	Image,
+	Animated,
+	useColorScheme,
+	View,
+} from "react-native";
+import { Text, Card } from "./Themed";
 import { Feather, MaterialIcons } from "@expo/vector-icons";
 import avatar from "../assets/images/avatar.jpeg";
 import { RectButton, Swipeable } from "react-native-gesture-handler";
@@ -15,7 +21,7 @@ export function TaskCard() {
 
 	return (
 		<Swipeable
-			friction={1.7}
+			friction={1.5}
 			overshootRight={false}
 			renderLeftActions={(progress, dragX) => {
 				const scale = dragX.interpolate({
@@ -49,7 +55,7 @@ export function TaskCard() {
 				</View>
 			)}
 		>
-			<View style={styles.cardTask} lightColor="#FFF">
+			<Card style={styles.cardTask}>
 				<View style={styles.cardTaskContent}>
 					<View style={styles.cardTaskContentHeader}>
 						<Text style={styles.cardTaskHeaderCategory}>Work</Text>
@@ -84,7 +90,7 @@ export function TaskCard() {
 					</View>
 					<Image source={avatar} style={styles.avatar} />
 				</View>
-			</View>
+			</Card>
 		</Swipeable>
 	);
 }
@@ -94,13 +100,12 @@ const styles = StyleSheet.create({
 		marginVertical: 8,
 		borderLeftWidth: 4,
 		borderRadius: 4,
-		borderLeftColor: "#000",
+		borderLeftColor: "#C38FFF",
 		padding: 12,
-
 		shadowColor: "#171717",
 		shadowOffset: { width: 1, height: 2 },
 		shadowOpacity: 0.05,
-		shadowRadius: 6,
+		shadowRadius: 8,
 	},
 	cardTaskContent: {
 		flexDirection: "row",
